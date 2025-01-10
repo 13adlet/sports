@@ -1,27 +1,33 @@
+import java.util.*;
+
 public class Sport {
     private String name;
-    private String[] equipmentNeeded;
+    private List<String> equipmentNeeded;
 
     public Sport(String name, String[] equipmentNeeded) {
         this.name = name;
-        this.equipmentNeeded = equipmentNeeded;
+        this.equipmentNeeded = Arrays.asList(equipmentNeeded);
     }
 
-    // Getters and Setters
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String[] getEquipmentNeeded() {
+    public List<String> getEquipmentNeeded() {
         return equipmentNeeded;
     }
 
-    public void setEquipmentNeeded(String[] equipmentNeeded) {
-        this.equipmentNeeded = equipmentNeeded;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof Sport)) return false;
+        Sport sport = (Sport) obj;
+        return name.equals(sport.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 
     @Override

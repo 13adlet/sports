@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Athlete {
     private String name;
     private int age;
@@ -9,29 +11,29 @@ public class Athlete {
         this.sport = sport;
     }
 
-    // Getters and Setters
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getAge() {
         return age;
     }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public Sport getSport() {
         return sport;
     }
 
-    public void setSport(Sport sport) {
-        this.sport = sport;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof Athlete)) return false;
+        Athlete athlete = (Athlete) obj;
+        return age == athlete.age && name.equals(athlete.name) && sport.equals(athlete.sport);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, age, sport);
     }
 
     @Override
@@ -39,3 +41,4 @@ public class Athlete {
         return "Athlete: " + name + ", Age: " + age + ", Sport: " + sport.getName();
     }
 }
+
